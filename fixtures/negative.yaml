@@ -1,0 +1,9 @@
+namespace: System.Net
+tenancyHost: ghe.com
+suffix: github.com
+hostname: example.com
+hostname: service.internal
+hostname: "*.microsoft.com"
+hostname: "${region}.microsoft.com"
+hostname: api.github.com trailing-label
+# hostname: commented.microsoft.com

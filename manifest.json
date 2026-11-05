@@ -1,0 +1,318 @@
+{
+  "selectionDescription": "Authored synthetic development controls, not an independent holdout or malware corpus.",
+  "annotationMethod": "Roles assigned by fixture intent. Occurrences are one-based exact substring occurrences within each UTF-8 file; offsets are generated as UTF-16 indices.",
+  "files": [
+    {
+      "path": "fixtures/settings.yaml",
+      "sha256": "84D631627465119AC123091DEB26B838551E0C9BF6A8747D9CF88BB721E7AB70",
+      "expected": [
+        {
+          "originalDomain": "api.github.com",
+          "offsetUtf16": 10,
+          "lengthUtf16": 14,
+          "role": "destination",
+          "explanation": "Configured exact destination hostname."
+        },
+        {
+          "originalDomain": "api.nuget.org",
+          "offsetUtf16": 46,
+          "lengthUtf16": 13,
+          "role": "destination",
+          "explanation": "Explicit egress destination."
+        },
+        {
+          "originalDomain": "registry.npmjs.org",
+          "offsetUtf16": 65,
+          "lengthUtf16": 18,
+          "role": "destination",
+          "explanation": "Explicit egress destination."
+        }
+      ]
+    },
+    {
+      "path": "fixtures/client.cs",
+      "sha256": "5C55E9660E2F613C396054D6C206E0EC201A96D7B348776DDBFB6462424F302F",
+      "expected": [
+        {
+          "originalDomain": "login.microsoftonline.com",
+          "offsetUtf16": 100,
+          "lengthUtf16": 25,
+          "role": "destination",
+          "explanation": "Default client destination setting."
+        },
+        {
+          "originalDomain": "destination.Host",
+          "offsetUtf16": 198,
+          "lengthUtf16": 16,
+          "role": "filename-identifier",
+          "explanation": "Source property expression, not a literal DNS name."
+        },
+        {
+          "originalDomain": "api.github.com",
+          "offsetUtf16": 219,
+          "lengthUtf16": 14,
+          "role": "destination",
+          "explanation": "Exact host equality, not a suffix comparison."
+        },
+        {
+          "originalDomain": "configuration.ServerAddress",
+          "offsetUtf16": 326,
+          "lengthUtf16": 27,
+          "role": "filename-identifier",
+          "explanation": "Source member expression assigned to Host."
+        },
+        {
+          "originalDomain": "github.com",
+          "offsetUtf16": 435,
+          "lengthUtf16": 10,
+          "role": "alias-suffix-match",
+          "explanation": "Returned category label, not a configured destination."
+        },
+        {
+          "originalDomain": "ghe.com",
+          "offsetUtf16": 488,
+          "lengthUtf16": 7,
+          "role": "alias-suffix-match",
+          "explanation": "Tenancy category suffix."
+        },
+        {
+          "originalDomain": "comment.microsoft.com",
+          "offsetUtf16": 542,
+          "lengthUtf16": 21,
+          "role": "documentation-example",
+          "explanation": "Quoted prose containing fake assignment syntax."
+        },
+        {
+          "originalDomain": "commented.microsoft.com",
+          "offsetUtf16": 583,
+          "lengthUtf16": 23,
+          "role": "documentation-example",
+          "explanation": "Source comment."
+        }
+      ]
+    },
+    {
+      "path": "fixtures/policy.go",
+      "sha256": "12450F6FE1237EFFCAD3009B8BB99D770D5AE06B09BB7A43F90BE7B98C8B4A3B",
+      "expected": [
+        {
+          "originalDomain": "strings.EqualFold",
+          "offsetUtf16": 92,
+          "lengthUtf16": 17,
+          "role": "filename-identifier",
+          "explanation": "Function selector, not a hostname."
+        },
+        {
+          "originalDomain": "registry.npmjs.org",
+          "offsetUtf16": 121,
+          "lengthUtf16": 18,
+          "role": "destination",
+          "explanation": "Case-insensitive exact hostname equality."
+        },
+        {
+          "originalDomain": "strings.HasSuffix",
+          "offsetUtf16": 203,
+          "lengthUtf16": 17,
+          "role": "filename-identifier",
+          "explanation": "Function selector, not a hostname."
+        },
+        {
+          "originalDomain": "npmjs.org",
+          "offsetUtf16": 232,
+          "lengthUtf16": 9,
+          "role": "alias-suffix-match",
+          "explanation": "Suffix category, not an exact destination."
+        },
+        {
+          "originalDomain": "github.com",
+          "offsetUtf16": 291,
+          "lengthUtf16": 10,
+          "role": "alias-suffix-match",
+          "explanation": "Return context deliberately does not establish a destination."
+        }
+      ]
+    },
+    {
+      "path": "fixtures/negative.yaml",
+      "sha256": "11A95369052A9810B5EA32D4F2C2DEEEDA281560AF08244129F5713BD334346B",
+      "expected": [
+        {
+          "originalDomain": "System.Net",
+          "offsetUtf16": 11,
+          "lengthUtf16": 10,
+          "role": "filename-identifier",
+          "explanation": "Namespace identifier."
+        },
+        {
+          "originalDomain": "ghe.com",
+          "offsetUtf16": 36,
+          "lengthUtf16": 7,
+          "role": "alias-suffix-match",
+          "explanation": "Tenancy suffix."
+        },
+        {
+          "originalDomain": "github.com",
+          "offsetUtf16": 53,
+          "lengthUtf16": 10,
+          "role": "alias-suffix-match",
+          "explanation": "Suffix label."
+        },
+        {
+          "originalDomain": "example.com",
+          "offsetUtf16": 75,
+          "lengthUtf16": 11,
+          "role": "private-template",
+          "explanation": "Reserved example domain."
+        },
+        {
+          "originalDomain": "service.internal",
+          "offsetUtf16": 98,
+          "lengthUtf16": 16,
+          "role": "private-template",
+          "explanation": "Private suffix."
+        },
+        {
+          "originalDomain": "api.github.com",
+          "offsetUtf16": 192,
+          "lengthUtf16": 14,
+          "role": "ambiguous",
+          "explanation": "Not a complete host scalar; extra text follows."
+        },
+        {
+          "originalDomain": "commented.microsoft.com",
+          "offsetUtf16": 235,
+          "lengthUtf16": 23,
+          "role": "documentation-example",
+          "explanation": "Configuration comment."
+        }
+      ]
+    },
+    {
+      "path": "fixtures/settings.toml",
+      "sha256": "A882349E0F610CE12AC6820C5C3BA60A2F56783C7703C784314AA55CACE160FD",
+      "expected": [
+        {
+          "originalDomain": "registry.npmjs.org",
+          "offsetUtf16": 15,
+          "lengthUtf16": 18,
+          "role": "destination",
+          "explanation": "Server name setting."
+        },
+        {
+          "originalDomain": "api.github.com",
+          "offsetUtf16": 44,
+          "lengthUtf16": 14,
+          "role": "destination",
+          "explanation": "Host setting."
+        },
+        {
+          "originalDomain": "github.com",
+          "offsetUtf16": 70,
+          "lengthUtf16": 10,
+          "role": "alias-suffix-match",
+          "explanation": "Alias, not a destination key."
+        }
+      ]
+    },
+    {
+      "path": "fixtures/page.html",
+      "sha256": "3D04B82B51203A6039E45A08B000E23B7BCA7C1653F945CC246BCF7B9BD4C829",
+      "expected": [
+        {
+          "originalDomain": "commented.microsoft.com",
+          "offsetUtf16": 46,
+          "lengthUtf16": 23,
+          "role": "documentation-example",
+          "explanation": "HTML comment."
+        }
+      ]
+    },
+    {
+      "path": "docs/example.yaml",
+      "sha256": "F046F96A34A5DBB96DCA17C9660AD3FFB03A306CEE2C69066B87BF1652F0C760",
+      "expected": [
+        {
+          "originalDomain": "documentation.microsoft.com",
+          "offsetUtf16": 10,
+          "lengthUtf16": 27,
+          "role": "documentation-example",
+          "explanation": "Documentation path is excluded despite destination-shaped syntax."
+        }
+      ]
+    },
+    {
+      "path": "fixtures/adversarial.cs",
+      "sha256": "30ECED5C5C1FC0436187DABB9BB929DE9468F065236B80715CD52231B51E96F3",
+      "expected": [
+        {
+          "originalDomain": "api.github.com",
+          "offsetUtf16": 133,
+          "lengthUtf16": 14,
+          "role": "ambiguous",
+          "explanation": "Suffix fragment of a concatenated collection element."
+        },
+        {
+          "originalDomain": "github.com",
+          "offsetUtf16": 221,
+          "lengthUtf16": 10,
+          "role": "alias-suffix-match",
+          "explanation": "Lambda returns a category, not a destination assignment."
+        },
+        {
+          "originalDomain": "raw.microsoft.com",
+          "offsetUtf16": 282,
+          "lengthUtf16": 17,
+          "role": "documentation-example",
+          "explanation": "Fake assignment inside a multiline raw string."
+        },
+        {
+          "originalDomain": "api.nuget.org",
+          "offsetUtf16": 394,
+          "lengthUtf16": 13,
+          "role": "ambiguous",
+          "explanation": "Concatenated element in a multiline collection."
+        }
+      ]
+    },
+    {
+      "path": "fixtures/settings.ini",
+      "sha256": "B783E6222E0F2AAF8F31F7106600CAC74D017FE1C3B87400DC729EE2F42FDA5F",
+      "expected": [
+        {
+          "originalDomain": "commented.microsoft.com",
+          "offsetUtf16": 13,
+          "lengthUtf16": 23,
+          "role": "documentation-example",
+          "explanation": "Unquoted INI semicolon comment."
+        },
+        {
+          "originalDomain": "quoted.microsoft.com",
+          "offsetUtf16": 52,
+          "lengthUtf16": 20,
+          "role": "documentation-example",
+          "explanation": "Quoted INI semicolon comment."
+        },
+        {
+          "originalDomain": "api.github.com",
+          "offsetUtf16": 86,
+          "lengthUtf16": 14,
+          "role": "destination",
+          "explanation": "INI hostname setting outside comments."
+        }
+      ]
+    },
+    {
+      "path": "notes.md",
+      "sha256": "6A18CF589767AAF8D494BE2C56F0719ACD2BF8A871CE57D8C67CAFD41617721A",
+      "expected": [
+        {
+          "originalDomain": "markdown.microsoft.com",
+          "offsetUtf16": 38,
+          "lengthUtf16": 22,
+          "role": "documentation-example",
+          "explanation": "Markdown documentation outside a special documentation directory."
+        }
+      ]
+    }
+  ]
+}

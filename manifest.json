@@ -302,6 +302,26 @@
       ]
     },
     {
+      "path": "fixtures/threat-domains.ini",
+      "sha256": "F4D94A789B45AB3F76996B49DA91383CFBD496F77E3D692D57A73E7BD99E3A81",
+      "expected": [
+        {
+          "originalDomain": "api-microservice-us1.com",
+          "offsetUtf16": 94,
+          "lengthUtf16": 24,
+          "role": "destination",
+          "explanation": "Complete bare hostname in an explicit destination setting; no URL scheme or path."
+        },
+        {
+          "originalDomain": "senaildebe.xyz",
+          "offsetUtf16": 150,
+          "lengthUtf16": 14,
+          "role": "destination",
+          "explanation": "Complete bare hostname in an explicit destination setting; no URL scheme or path."
+        }
+      ]
+    },
+    {
       "path": "notes.md",
       "sha256": "6A18CF589767AAF8D494BE2C56F0719ACD2BF8A871CE57D8C67CAFD41617721A",
       "expected": [

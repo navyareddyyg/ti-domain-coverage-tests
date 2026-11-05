@@ -2,7 +2,7 @@
 
 Synthetic, non-sensitive development controls for strict bare-domain extraction.
 The source and configuration files are authored examples, not applications to
-build or run. Domain strings reference public services or deliberate placeholders;
+build or run. Domain strings reference public services, threat indicators, or deliberate placeholders;
 their presence does not assert ownership, maliciousness, reachability, or safety.
 
 The repository contains fixtures and expected roles only. It contains no scanner
@@ -33,11 +33,14 @@ dotnet C:\path\to\your\offline-runner.dll --manifest .\manifest.json --out .\str
 .\Test-CoverageReport.ps1 -ReportPath .\strict.report.json
 ```
 
-Acceptance: all 9 annotated destination occurrences are admitted, zero annotated
+Acceptance: all 11 annotated destination occurrences are admitted, zero annotated
 non-destinations are admitted, zero admissions are unannotated, and all three existing
 full URL paths remain in the baseline. Duplicate hosts may share a root lookup
 identity; they must not lose source occurrences. The checker validates candidate
 records against labeled spans and original bytes, not just summary counters.
+
+`fixtures/threat-domains.ini` keeps the two threat indicators as bare hostname
+settings. They are extraction controls, not guaranteed-current malicious verdicts.
 
 To regenerate spans/hashes after intentional fixture edits, use PowerShell 7
 and generate a new file without overwriting existing evidence:

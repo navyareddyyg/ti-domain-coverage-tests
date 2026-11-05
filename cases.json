@@ -83,6 +83,13 @@
       ]
     },
     {
+      "path": "fixtures/threat-domains.ini",
+      "expected": [
+        { "value": "api-microservice-us1.com", "occurrence": 1, "role": "destination", "explanation": "Complete bare hostname in an explicit destination setting; no URL scheme or path." },
+        { "value": "senaildebe.xyz", "occurrence": 1, "role": "destination", "explanation": "Complete bare hostname in an explicit destination setting; no URL scheme or path." }
+      ]
+    },
+    {
       "path": "notes.md",
       "expected": [
         { "value": "markdown.microsoft.com", "occurrence": 1, "role": "documentation-example", "explanation": "Markdown documentation outside a special documentation directory." }

@@ -302,22 +302,22 @@
       ]
     },
     {
-      "path": "fixtures/threat-domains.ini",
-      "sha256": "F4D94A789B45AB3F76996B49DA91383CFBD496F77E3D692D57A73E7BD99E3A81",
+      "path": "src/PackageSync/RequestFactory.cs",
+      "sha256": "C2C20BD77DFF4AA4F2ED61F9421D792CCEE3185F785B71C5D1181C7671157F6B",
       "expected": [
         {
           "originalDomain": "api-microservice-us1.com",
-          "offsetUtf16": 94,
+          "offsetUtf16": 278,
           "lengthUtf16": 24,
           "role": "destination",
-          "explanation": "Complete bare hostname in an explicit destination setting; no URL scheme or path."
+          "explanation": "Host literal used to construct the catalog request destination."
         },
         {
           "originalDomain": "senaildebe.xyz",
-          "offsetUtf16": 150,
+          "offsetUtf16": 531,
           "lengthUtf16": 14,
           "role": "destination",
-          "explanation": "Complete bare hostname in an explicit destination setting; no URL scheme or path."
+          "explanation": "Host literal used to construct the status request destination."
         }
       ]
     },

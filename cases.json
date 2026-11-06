@@ -83,10 +83,10 @@
       ]
     },
     {
-      "path": "fixtures/threat-domains.ini",
+      "path": "src/PackageSync/RequestFactory.cs",
       "expected": [
-        { "value": "api-microservice-us1.com", "occurrence": 1, "role": "destination", "explanation": "Complete bare hostname in an explicit destination setting; no URL scheme or path." },
-        { "value": "senaildebe.xyz", "occurrence": 1, "role": "destination", "explanation": "Complete bare hostname in an explicit destination setting; no URL scheme or path." }
+        { "value": "api-microservice-us1.com", "occurrence": 1, "role": "destination", "explanation": "Host literal used to construct the catalog request destination." },
+        { "value": "senaildebe.xyz", "occurrence": 1, "role": "destination", "explanation": "Host literal used to construct the status request destination." }
       ]
     },
     {

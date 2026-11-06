@@ -2,11 +2,13 @@
 
 Synthetic, non-sensitive development controls for strict bare-domain extraction.
 The source and configuration files are authored examples, not applications to
-build or run. Domain strings reference public services, threat indicators, or deliberate placeholders;
-their presence does not assert ownership, maliciousness, reachability, or safety.
+build or run. Domain strings reference public services, threat indicators, or
+deliberate placeholders; their presence does not assert ownership, maliciousness,
+reachability, or safety.
 
-The repository contains fixtures and expected roles only. It contains no scanner
-implementation, credentials, private source, customer samples, or malware.
+The repository contains authored application-style source/configuration samples
+and expected roles only. It contains no scanner implementation, credentials,
+private source, customer samples, or malware.
 Scanning these files must not execute them or contact the named services.
 
 ## What to check
@@ -39,8 +41,20 @@ full URL paths remain in the baseline. Duplicate hosts may share a root lookup
 identity; they must not lose source occurrences. The checker validates candidate
 records against labeled spans and original bytes, not just summary counters.
 
-`fixtures/threat-domains.ini` keeps the two threat indicators as bare hostname
-settings. They are extraction controls, not guaranteed-current malicious verdicts.
+## Discovery without annotations
+
+The source under `src/` constructs ordinary HTTP requests from separate scheme,
+host and path values. Scan it as source, without passing the expected-case
+manifest or a list of domains:
+
+```powershell
+dotnet C:\path\to\your\offline-runner.dll --input .\src\PackageSync\RequestFactory.cs --out .\discovery.report.json
+```
+
+`cases.json` and `manifest.json` are for checking results afterward, not for
+supplying domains to this discovery run. The sample only constructs requests;
+it contains no code that sends them. It is authored development data, not an
+independently discovered application or a guaranteed-current reputation result.
 
 To regenerate spans/hashes after intentional fixture edits, use PowerShell 7
 and generate a new file without overwriting existing evidence:

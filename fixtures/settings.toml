@@ -1,3 +1,0 @@
-server_name = "registry.npmjs.org"
-host = "api.github.com"
-alias = "github.com"

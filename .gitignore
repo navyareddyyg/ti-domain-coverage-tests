@@ -1,2 +1,7 @@
 *.report.json
 *.local.json
+**/bin/
+**/obj/
+artifacts/
+.vs/
+.idea/

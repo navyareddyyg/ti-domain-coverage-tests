@@ -1,5 +1,0 @@
-hostname: api.github.com
-allowed_hosts:
-  - api.nuget.org
-  - registry.npmjs.org
-url: https://api.github.com/repos/octocat/Hello-World

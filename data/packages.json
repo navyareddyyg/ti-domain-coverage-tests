@@ -1,0 +1,17 @@
+[
+  {
+    "ecosystem": "nuget",
+    "name": "System.Text.Json",
+    "version": "10.0.0"
+  },
+  {
+    "ecosystem": "nuget",
+    "name": "Microsoft.Extensions.Logging",
+    "version": "10.0.0"
+  },
+  {
+    "ecosystem": "npm",
+    "name": "@types/node",
+    "version": "22.0.0"
+  }
+]

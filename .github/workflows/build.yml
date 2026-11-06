@@ -1,0 +1,32 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73 # v6
+        with:
+          dotnet-version: 10.0.x
+      - name: Build
+        run: dotnet build ReleaseDesk.slnx -c Release
+      - name: Check formatting
+        run: dotnet format ReleaseDesk.slnx --verify-no-changes --no-restore
+      - name: Run application checks
+        run: dotnet run --project tests/ReleaseDesk.Checks -c Release --no-build
+      - name: Prepare release plan
+        run: dotnet run --project src/ReleaseDesk -c Release --no-build

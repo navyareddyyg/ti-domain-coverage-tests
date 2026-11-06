@@ -1,69 +1,43 @@
-# Domain coverage test fixtures
+# ReleaseDesk
 
-Synthetic, non-sensitive development controls for strict bare-domain extraction.
-The source and configuration files are authored examples, not applications to
-build or run. Domain strings reference public services, threat indicators, or
-deliberate placeholders; their presence does not assert ownership, maliciousness,
-reachability, or safety.
+A small dependency-inventory worker for release preparation. It validates a
+package inventory and writes a reviewable plan containing registry downloads,
+source-control metadata and catalog/status requests.
 
-The repository contains authored application-style source/configuration samples
-and expected roles only. It contains no scanner implementation, credentials,
-private source, customer samples, or malware.
-Scanning these files must not execute them or contact the named services.
+The worker only prepares the plan. It never sends HTTP requests, executes
+packages or downloads artifacts. The included inventory is authored sample data;
+this is not a real customer's application.
 
-## What to check
+## Run locally
 
-| Case | Expected behavior |
+Use the .NET 10 SDK. No external NuGet packages, accounts or credentials are
+required.
+
+```powershell
+dotnet build ReleaseDesk.slnx -c Release
+dotnet run --project src\ReleaseDesk -c Release --no-build
+```
+
+The default inventory and application settings are copied beside the executable.
+The output is `artifacts\release-plan.json`. Existing output files are never
+overwritten; choose a different output path for another run:
+
+```powershell
+dotnet run --project src\ReleaseDesk -c Release --no-build -- --settings config\production.json --inventory data\packages.json --output artifacts\production-plan.json
+```
+
+## Repository
+
+| Directory | Purpose |
 | --- | --- |
-| Explicit hostname settings and egress lists | Admit complete literal destinations. |
-| Exact host equality | Admit the exact host, not a parent suffix. |
-| Source property expressions | Reject identifiers as domain literals. |
-| Tenancy suffixes, aliases, returned categories | Do not promote labels to destinations. |
-| Comments, documentation, templates, private/example names | Do not admit. |
-| Existing full URLs | Preserve their independent URL identity and full path. |
-
-`cases.json` records roles by fixture intent. `manifest.json` pins file bytes
-with SHA-256 and exact UTF-16 source spans. Wildcard/template values and full
-URLs are structural controls, not bare-domain annotations. Full URLs in
-`fixtures/settings.yaml`, `fixtures/page.html` and `notes.md` must remain
-baseline URLs, including when bare-domain admission excludes Markdown.
-
-For an offline runner accepting `--manifest` and `--out`:
+| `src/ReleaseDesk` | Worker, settings, inventory rules and integration requests. |
+| `data` | Local package inventory. |
+| `config` | Environment-specific settings. |
+| `tests/ReleaseDesk.Checks` | Dependency-free application checks. |
+| `docs` | Configuration and operations notes. |
+| `.github/workflows` | Windows/Linux build and checks. |
 
 ```powershell
-dotnet C:\path\to\your\offline-runner.dll --manifest .\manifest.json --out .\strict.report.json
-.\Test-CoverageReport.ps1 -ReportPath .\strict.report.json
+dotnet run --project tests\ReleaseDesk.Checks -c Release --no-build
+dotnet format ReleaseDesk.slnx --verify-no-changes --no-restore
 ```
-
-Acceptance: all 11 annotated destination occurrences are admitted, zero annotated
-non-destinations are admitted, zero admissions are unannotated, and all three existing
-full URL paths remain in the baseline. Duplicate hosts may share a root lookup
-identity; they must not lose source occurrences. The checker validates candidate
-records against labeled spans and original bytes, not just summary counters.
-
-## Discovery without annotations
-
-The source under `src/` constructs ordinary HTTP requests from separate scheme,
-host and path values. Scan it as source, without passing the expected-case
-manifest or a list of domains:
-
-```powershell
-dotnet C:\path\to\your\offline-runner.dll --input .\src\PackageSync\RequestFactory.cs --out .\discovery.report.json
-```
-
-`cases.json` and `manifest.json` are for checking results afterward, not for
-supplying domains to this discovery run. The sample only constructs requests;
-it contains no code that sends them. It is authored development data, not an
-independently discovered application or a guaranteed-current reputation result.
-
-To regenerate spans/hashes after intentional fixture edits, use PowerShell 7
-and generate a new file without overwriting existing evidence:
-
-```powershell
-.\New-Manifest.ps1 -OutFile manifest.local.json
-```
-
-Review the changed labels and manifest before replacing the committed version.
-An offline extraction result is not a reputation verdict. These intentionally
-authored controls establish behavior, not independent precision/recall,
-natural threat-detection improvement, or production readiness.
